@@ -2,9 +2,9 @@
 
   ServerName www.iluvunicorns.com
 
-  DocumentRoot /var/www
+  DocumentRoot <%= node["deploy_path"] %>
       
-  <Directory /var/www/>
+  <Directory <%= node["deploy_path"] %>>
     AllowOverride None
     Order allow,deny
     allow from all

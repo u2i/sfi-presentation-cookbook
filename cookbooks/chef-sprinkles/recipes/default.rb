@@ -1,12 +1,17 @@
 package "apache2"
 
-cookbook_file "/var/www/index.html" do
+directory node["deploy_path"] do
+  recursive true
+  mode 00777
+end
+
+cookbook_file node["deploy_path"] + "index.html" do
   source "sprinkles.html"
   mode 00444
 end
 
-cookbook_file "/etc/apache2/sites-available/default" do
-  source "sprinkles.conf"
+template "/etc/apache2/sites-available/default" do
+  source "sprinkles.conf.erb"
   notifies :restart, "service[apache2]"
 end
 
