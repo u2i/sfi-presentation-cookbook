@@ -1,0 +1,5 @@
+name "sprinkles"
+maintainer       "Pawel Kozlowski"
+license          "Apache 2.0"
+description      "Installs/Configures the Sprinkles website"
+version          "1.0.0"
