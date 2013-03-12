@@ -1,4 +1,4 @@
-package "apache2"
+include_recipe "apache2"
 package "git"
 
 directory node["deploy_path"] do
@@ -11,11 +11,6 @@ git node["deploy_path"] do
   user "www-data"
 end
 
-template "/etc/apache2/sites-available/default" do
-  source "sprinkles.conf.erb"
-  notifies :restart, "service[apache2]"
-end
-
-service "apache2" do
-  action [:enable, :start]
+web_app "sprinkles" do
+  template "sprinkles.conf.erb"
 end
