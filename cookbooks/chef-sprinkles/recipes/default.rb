@@ -1,13 +1,14 @@
 package "apache2"
+package "git"
 
 directory node["deploy_path"] do
   recursive true
   mode 00777
 end
 
-cookbook_file node["deploy_path"] + "index.html" do
-  source "sprinkles.html"
-  mode 00444
+git node["deploy_path"] do
+  repository node["git_repo"]
+  user "www-data"
 end
 
 template "/etc/apache2/sites-available/default" do
